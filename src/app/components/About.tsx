@@ -126,16 +126,15 @@ export function About() {
                 className="text-white/60 leading-relaxed"
                 style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.95rem" }}
               >
-                Currently seeking hackathon opportunities and internships where I can contribute,
-                collaborate, and grow while building technology that matters.
+                Currently building AI-powered platforms for security, healthcare, and smart cities — actively seeking internship opportunities where I can contribute and grow.
               </p>
 
               {/* Stats row */}
               <div className="mt-8 pt-6 border-t border-white/10 grid grid-cols-3 gap-4">
                 {[
                   { value: "4+", label: "Projects Built" },
-                  { value: "5+", label: "Technologies" },
-                  { value: "2024", label: "Started Coding" },
+                  { value: "10+", label: "Technologies" },
+                  { value: "3+", label: "Hackathons" },
                 ].map((stat, i) => (
                   <div key={i} className="text-center">
                     <div

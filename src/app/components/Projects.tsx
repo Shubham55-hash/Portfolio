@@ -1,78 +1,118 @@
 import { motion } from "motion/react";
 import { useInView } from "motion/react";
 import { useRef, useState } from "react";
-import { ExternalLink, Github, ChevronRight } from "lucide-react";
+import { ExternalLink, Github, ChevronRight, Shield, Mic, IdCard, Train, Star, Zap } from "lucide-react";
 
 const projects = [
   {
     id: 1,
-    title: "Personal Expense Tracker",
+    title: "ScamDefy",
+    subtitle: "Advanced AI Threat Detection System",
     description:
-      "A full-stack finance management system to track income, expenses, and investments with real-time analytics. Features budget planning, spending insights, and downloadable monthly reports.",
-    tags: ["React", "Node.js", "Express", "MongoDB", "Chart.js", "JWT"],
-    color: "from-violet-600 to-indigo-600",
-    glow: "shadow-violet-500/20",
-    border: "border-violet-500/30",
-    accent: "#8b5cf6",
+      "A comprehensive, multi-layered security platform detecting and blocking modern scams across web, voice, and message channels using state-of-the-art AI models and threat intelligence databases.",
+    tags: ["FastAPI", "React", "TypeScript", "Python", "Scikit-Learn", "Gemini AI", "Tailwind"],
+    color: "from-red-500 to-rose-600",
+    glow: "shadow-red-500/20",
+    border: "border-red-500/30",
+    accent: "#ef4444",
+    accentLight: "rgba(239,68,68,0.12)",
+    icon: <Shield size={22} />,
+    category: "AI Security",
+    categoryColor: "text-red-400 bg-red-500/10 border-red-500/20",
     points: [
-      "Full-stack finance management with real-time analytics",
-      "Budget planning & spending insights dashboard",
-      "Downloadable monthly financial reports",
+      "Neural Voice Inspector — deepfake & AI voice detection with forensic .pkl ML models",
+      "Multi-vector URL scanner with Google Safe Browsing, URLHaus & Gemini AI risk summaries",
+      "Safety Circle & Guardian system with automated alerts for high-risk events",
     ],
-    emoji: "💰",
+    github: "https://github.com/Shubham55-hash/ScamDefy_Production.git",
+    live: "https://scam-defy-production-end27m0ci-shubham55-hashs-projects.vercel.app/#features",
+    hasLive: true,
+    featured: true,
   },
   {
     id: 2,
-    title: "College Bus Tracking System",
+    title: "VocaHealth",
+    subtitle: "AI-Powered Contactless Diagnostic Platform",
     description:
-      "A real-time bus tracking platform with live location updates and arrival time prediction, integrating Maps API and delay alerts to improve student commute planning.",
-    tags: ["JavaScript", "Google Maps API", "Firebase", "GPS"],
-    color: "from-cyan-600 to-teal-600",
-    glow: "shadow-cyan-500/20",
-    border: "border-cyan-500/30",
-    accent: "#06b6d4",
+      "An AI platform that turns the human voice into a critical vital sign. Analyzes 15 seconds of speech to detect sub-audible vocal biomarkers and flag early signs of illness years before symptoms manifest.",
+    tags: ["FastAPI", "React Native", "Expo", "Whisper", "Librosa", "OpenRouter", "Twilio", "Recharts"],
+    color: "from-emerald-500 to-teal-600",
+    glow: "shadow-emerald-500/20",
+    border: "border-emerald-500/30",
+    accent: "#10b981",
+    accentLight: "rgba(16,185,129,0.12)",
+    icon: <Mic size={22} />,
+    category: "HealthTech · AI",
+    categoryColor: "text-emerald-400 bg-emerald-500/10 border-emerald-500/20",
     points: [
-      "Real-time bus tracking with live GPS location",
-      "Arrival time prediction system",
-      "Integrated Maps API with delay alerts",
+      "VoiceScore Engine — 18 vocal biomarkers with ~96.3% clinical-grade Random Forest accuracy",
+      "Dual-Signal Safety Protocol combining acoustic markers with NLP sentiment analysis",
+      "VocaCompanion AI chatbot + WhatsApp caretaker alerts + clinical PDF report generator",
     ],
-    emoji: "🚌",
+    github: "https://github.com/Shubham55-hash/HackNext_CrazyHacks.git",
+    live: "",
+    hasLive: false,
+    featured: true,
   },
   {
     id: 3,
-    title: "Hospital Management System",
+    title: "PRISM",
+    subtitle: "Unified Digital Identity System",
     description:
-      "A comprehensive system for managing patient records, appointments, and doctor schedules. Implements role-based access for admin, doctors, and patients with notification support.",
-    tags: ["React", "Node.js", "Express", "MongoDB", "JWT"],
-    color: "from-fuchsia-600 to-pink-600",
-    glow: "shadow-fuchsia-500/20",
-    border: "border-fuchsia-500/30",
-    accent: "#d946ef",
+      "A centralized, secure digital identity vault enabling users to upload, verify, and manage identity, financial, and medical documents with dynamic autofill and time-bound third-party access grants.",
+    tags: ["React", "TypeScript", "Python", "OCR", "JWT", "DigiLocker API", "Consent Management"],
+    color: "from-violet-500 to-purple-600",
+    glow: "shadow-violet-500/20",
+    border: "border-violet-500/30",
+    accent: "#8b5cf6",
+    accentLight: "rgba(139,92,246,0.12)",
+    icon: <IdCard size={22} />,
+    category: "Identity · Security",
+    categoryColor: "text-violet-400 bg-violet-500/10 border-violet-500/20",
     points: [
-      "Patient records & appointment management",
-      "Role-based access for admin, doctors, patients",
-      "Notification support system",
+      "Type-aware OCR extraction engine auto-detecting Identity, Financial & Medical documents",
+      "Emergency Crisis Mode with 24-hour time-limited first-responder access tokens",
+      "Granular consent management & autofill with live countdown timers for third parties",
     ],
-    emoji: "🏥",
+    github: "https://github.com/Shubham55-hash/PRISM.git",
+    live: "",
+    hasLive: false,
+    featured: false,
   },
   {
     id: 4,
-    title: "Restaurant Website",
+    title: "FlowCity",
+    subtitle: "Predictive Multi-Modal Transit Intelligence",
     description:
-      "A responsive restaurant website with sections for menu, services, and contact information. Implemented user-friendly navigation and optimized layout for better customer experience.",
-    tags: ["HTML", "CSS", "JavaScript"],
-    color: "from-orange-500 to-amber-600",
-    glow: "shadow-orange-500/20",
-    border: "border-orange-500/30",
-    accent: "#f97316",
+      "An advanced transit intelligence and journey planning backend tuned for Mumbai (local trains, BEST buses & Metro) combining real-time API integrations, ML delay predictions, and dynamic risk assessment.",
+    tags: ["Node.js", "TypeScript", "Express", "Socket.io", "Zod", "Bull", "ML Service", "OpenRouteService"],
+    color: "from-cyan-500 to-sky-600",
+    glow: "shadow-cyan-500/20",
+    border: "border-cyan-500/30",
+    accent: "#06b6d4",
+    accentLight: "rgba(6,182,212,0.12)",
+    icon: <Train size={22} />,
+    category: "TransitTech · ML",
+    categoryColor: "text-cyan-400 bg-cyan-500/10 border-cyan-500/20",
     points: [
-      "Fully responsive multi-section design",
-      "Menu, services & contact sections",
-      "Optimized UX & navigation flow",
+      "Ghost Commute simulation — fuses live weather, rail, cab APIs with Haversine fallbacks",
+      "Dynamic TrustScore (0–100) using half-life decay math & AI-generated route explanations",
+      "Predictive ML service with probabilistic delay output + Safety Rescue Mode alternatives",
     ],
-    emoji: "🍽️",
+    github: "https://github.com/Shubham55-hash/FlowCity.git",
+    live: "",
+    hasLive: false,
+    featured: false,
   },
 ];
+
+function FeaturedBadge() {
+  return (
+    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold bg-amber-500/15 border border-amber-500/30 text-amber-400 uppercase tracking-wider">
+      <Star size={9} fill="currentColor" /> Featured
+    </span>
+  );
+}
 
 function ProjectCard({ project, index }: { project: typeof projects[0]; index: number }) {
   const ref = useRef(null);
@@ -82,61 +122,96 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 50 }}
+      initial={{ opacity: 0, y: 60 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.6, delay: index * 0.12 }}
+      transition={{ duration: 0.65, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      className={`group relative rounded-3xl border ${project.border} bg-[#0d0d2a]/80 backdrop-blur-sm overflow-hidden transition-all duration-500 hover:shadow-2xl ${project.glow} cursor-default`}
+      className={`group relative rounded-3xl border ${project.border} bg-[#0c0c22]/90 backdrop-blur-md overflow-hidden transition-all duration-500 hover:shadow-2xl ${project.glow} cursor-default flex flex-col`}
     >
-      {/* Gradient top bar */}
-      <div className={`h-1 w-full bg-gradient-to-r ${project.color}`} />
+      {/* Animated gradient top bar */}
+      <div className={`h-[3px] w-full bg-gradient-to-r ${project.color} relative`}>
+        <motion.div
+          className={`absolute inset-0 bg-gradient-to-r ${project.color} opacity-0`}
+          animate={{ opacity: hovered ? 1 : 0, scaleX: hovered ? 1 : 0.6 }}
+          transition={{ duration: 0.4 }}
+          style={{ originX: 0 }}
+        />
+      </div>
 
       {/* Glowing background on hover */}
       <motion.div
-        animate={{ opacity: hovered ? 0.06 : 0 }}
-        transition={{ duration: 0.3 }}
-        className={`absolute inset-0 bg-gradient-to-br ${project.color} pointer-events-none`}
+        animate={{ opacity: hovered ? 1 : 0 }}
+        transition={{ duration: 0.4 }}
+        className="absolute inset-0 pointer-events-none"
+        style={{ background: `radial-gradient(ellipse at top left, ${project.accentLight} 0%, transparent 60%)` }}
       />
 
-      <div className="p-7">
-        {/* Header */}
-        <div className="flex items-start justify-between mb-5">
+      <div className="p-7 flex flex-col flex-1">
+        {/* Header row */}
+        <div className="flex items-start justify-between mb-4">
           <div className="flex items-center gap-3">
+            {/* Icon */}
             <div
-              className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${project.color} flex items-center justify-center text-xl shadow-lg`}
+              className={`w-11 h-11 rounded-2xl bg-gradient-to-br ${project.color} flex items-center justify-center text-white shadow-lg shrink-0`}
             >
-              {project.emoji}
+              {project.icon}
             </div>
             <div>
-              <h3
-                className="text-white mb-0.5"
-                style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: "1.05rem" }}
+              <div className="flex items-center gap-2 flex-wrap mb-0.5">
+                <h3
+                  className="text-white"
+                  style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: "1.08rem" }}
+                >
+                  {project.title}
+                </h3>
+                {project.featured && <FeaturedBadge />}
+              </div>
+              <span
+                className={`inline-flex items-center px-2 py-0.5 rounded-md text-[11px] border font-medium ${project.categoryColor}`}
+                style={{ fontFamily: "'Fira Code', monospace" }}
               >
-                {project.title}
-              </h3>
-              <span className="text-white/30 text-xs" style={{ fontFamily: "'Fira Code', monospace" }}>
-                0{index + 1} / 0{projects.length}
+                {project.category}
               </span>
             </div>
           </div>
-          <div className="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <motion.button
+
+          {/* Action buttons */}
+          <div className="flex gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300 shrink-0">
+            <motion.a
+              href={project.github}
+              target="_blank"
+              rel="noreferrer"
               whileHover={{ scale: 1.15 }}
-              whileTap={{ scale: 0.95 }}
-              className="w-8 h-8 rounded-full border border-white/15 bg-white/5 flex items-center justify-center text-white/50 hover:text-white transition-colors cursor-pointer"
+              whileTap={{ scale: 0.92 }}
+              className="w-8 h-8 rounded-full border border-white/15 bg-white/5 flex items-center justify-center text-white/50 hover:text-white hover:border-white/30 hover:bg-white/10 transition-all"
+              title="View on GitHub"
             >
-              <Github size={14} />
-            </motion.button>
-            <motion.button
-              whileHover={{ scale: 1.15 }}
-              whileTap={{ scale: 0.95 }}
-              className="w-8 h-8 rounded-full border border-white/15 bg-white/5 flex items-center justify-center text-white/50 hover:text-white transition-colors cursor-pointer"
-            >
-              <ExternalLink size={14} />
-            </motion.button>
+              <Github size={13} />
+            </motion.a>
+            {project.hasLive && (
+              <motion.a
+                href={project.live}
+                target="_blank"
+                rel="noreferrer"
+                whileHover={{ scale: 1.15 }}
+                whileTap={{ scale: 0.92 }}
+                className="w-8 h-8 rounded-full border border-white/15 bg-white/5 flex items-center justify-center text-white/50 hover:text-white hover:border-white/30 hover:bg-white/10 transition-all"
+                title="Live Demo"
+              >
+                <ExternalLink size={13} />
+              </motion.a>
+            )}
           </div>
         </div>
+
+        {/* Subtitle */}
+        <p
+          className="text-xs uppercase tracking-wider mb-3 font-semibold"
+          style={{ fontFamily: "'Fira Code', monospace", color: project.accent, opacity: 0.8 }}
+        >
+          {project.subtitle}
+        </p>
 
         {/* Description */}
         <p
@@ -147,26 +222,54 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
         </p>
 
         {/* Key points */}
-        <ul className="mb-5 space-y-2">
+        <ul className="mb-5 space-y-2.5 flex-1">
           {project.points.map((point, i) => (
             <li key={i} className="flex items-start gap-2.5 text-sm text-white/50" style={{ fontFamily: "'Inter', sans-serif" }}>
-              <ChevronRight size={14} className="mt-0.5 shrink-0" style={{ color: project.accent }} />
-              {point}
+              <ChevronRight size={13} className="mt-0.5 shrink-0" style={{ color: project.accent }} />
+              <span className="leading-snug">{point}</span>
             </li>
           ))}
         </ul>
 
-        {/* Tags */}
-        <div className="flex flex-wrap gap-2">
-          {project.tags.map((tag) => (
-            <span
-              key={tag}
-              className="px-3 py-1 rounded-full text-xs border border-white/10 bg-white/5 text-white/60"
-              style={{ fontFamily: "'Fira Code', monospace" }}
-            >
-              {tag}
+        {/* Footer: Tags + GitHub link */}
+        <div className="pt-4 border-t border-white/[0.07]">
+          <div className="flex flex-wrap gap-1.5 mb-3">
+            {project.tags.map((tag) => (
+              <span
+                key={tag}
+                className="px-2.5 py-0.5 rounded-full text-[11px] border border-white/10 bg-white/[0.04] text-white/50"
+                style={{ fontFamily: "'Fira Code', monospace" }}
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+          <a
+            href={project.github}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-1.5 text-xs transition-all duration-200 group/link"
+            style={{ fontFamily: "'Fira Code', monospace", color: project.accent, opacity: 0.7 }}
+          >
+            <Github size={11} />
+            <span className="group-hover/link:opacity-100 hover:underline" style={{ opacity: 'inherit' }}>
+              View Source
             </span>
-          ))}
+            {project.hasLive && (
+              <>
+                <span className="text-white/20 mx-1">·</span>
+                <a
+                  href={project.live}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-1 hover:underline"
+                  style={{ color: project.accent }}
+                >
+                  <Zap size={10} /> Live Demo
+                </a>
+              </>
+            )}
+          </a>
         </div>
       </div>
     </motion.div>
@@ -186,7 +289,8 @@ export function Projects() {
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-cyan-500/30 to-transparent" />
 
       {/* Background decoration */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-violet-900/10 blur-[100px] pointer-events-none" />
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full bg-violet-900/8 blur-[120px] pointer-events-none" />
+      <div className="absolute top-2/3 right-0 w-[400px] h-[400px] rounded-full bg-cyan-900/8 blur-[100px] pointer-events-none" />
 
       <div className="max-w-6xl mx-auto px-6">
         {/* Header */}
@@ -213,7 +317,7 @@ export function Projects() {
             </span>
           </h2>
           <p className="text-white/40 max-w-xl mx-auto text-sm" style={{ fontFamily: "'Inter', sans-serif" }}>
-            A collection of projects I've built — from full-stack web apps to real-time systems.
+            Flagship AI-driven systems built for real-world impact — from forensic voice detection to predictive transit intelligence.
           </p>
           <div className="w-16 h-1 rounded-full bg-gradient-to-r from-cyan-500 to-violet-500 mx-auto mt-4" />
         </motion.div>
@@ -224,6 +328,28 @@ export function Projects() {
             <ProjectCard key={project.id} project={project} index={i} />
           ))}
         </div>
+
+        {/* GitHub CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.5 }}
+          className="text-center mt-14"
+        >
+          <motion.a
+            href="https://github.com/Shubham55-hash"
+            target="_blank"
+            rel="noreferrer"
+            whileHover={{ scale: 1.04, boxShadow: "0 0 30px rgba(139,92,246,0.25)" }}
+            whileTap={{ scale: 0.97 }}
+            className="inline-flex items-center gap-3 px-8 py-3.5 rounded-full border border-violet-500/30 bg-violet-500/10 text-white/80 hover:text-white hover:border-violet-500/50 hover:bg-violet-500/15 transition-all backdrop-blur-sm"
+            style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 500 }}
+          >
+            <Github size={18} />
+            Explore All Projects on GitHub
+            <ExternalLink size={14} className="text-violet-400" />
+          </motion.a>
+        </motion.div>
       </div>
     </section>
   );
