@@ -40,7 +40,7 @@ export function Navbar() {
           : "bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between">
         {/* Logo */}
         <motion.div
           whileHover={{ scale: 1.05 }}
@@ -105,20 +105,23 @@ export function Navbar() {
             exit={{ opacity: 0, height: 0 }}
             className="md:hidden bg-[#0d0d1a]/95 backdrop-blur-xl border-b border-white/10"
           >
-            <div className="px-6 py-4 flex flex-col gap-4">
+            <div className="px-4 sm:px-6 py-3 flex flex-col">
               {navLinks.map((link) => (
                 <button
                   key={link.label}
                   onClick={() => scrollTo(link.href)}
-                  className="text-white/70 hover:text-white text-left py-2 text-sm transition-colors cursor-pointer"
+                  className="text-white/70 hover:text-white text-left py-3.5 border-b border-white/5 text-sm transition-colors cursor-pointer w-full"
                   style={{ fontFamily: "'Inter', sans-serif" }}
                 >
-                  {link.label}
+                  <span className="flex items-center gap-2">
+                    <span className="w-1 h-1 rounded-full bg-violet-400" />
+                    {link.label}
+                  </span>
                 </button>
               ))}
               <button
                 onClick={() => scrollTo("#contact")}
-                className="px-5 py-2 rounded-full bg-gradient-to-r from-violet-500 to-cyan-500 text-white text-sm font-medium w-fit cursor-pointer"
+                className="mt-2 px-5 py-3 rounded-full bg-gradient-to-r from-violet-500 to-cyan-500 text-white text-sm font-medium w-full cursor-pointer text-center"
               >
                 Hire Me
               </button>

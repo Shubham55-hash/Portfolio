@@ -43,7 +43,7 @@ export function Contact() {
   return (
     <section
       id="contact"
-      className="py-28 relative overflow-hidden"
+      className="py-16 sm:py-28 relative overflow-hidden"
       style={{ background: "linear-gradient(180deg, #0a0a1f 0%, #060614 100%)" }}
     >
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-violet-500/30 to-transparent" />
@@ -52,7 +52,7 @@ export function Contact() {
       <div className="absolute bottom-0 left-0 w-80 h-80 bg-violet-900/20 rounded-full blur-[80px] pointer-events-none" />
       <div className="absolute top-0 right-0 w-80 h-80 bg-cyan-900/20 rounded-full blur-[80px] pointer-events-none" />
 
-      <div className="max-w-6xl mx-auto px-6">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
         {/* Header */}
         <motion.div
           ref={ref}
@@ -155,7 +155,7 @@ export function Contact() {
             transition={{ duration: 0.7, delay: 0.3 }}
             className="lg:col-span-3"
           >
-            <div className="p-8 rounded-3xl border border-white/10 bg-white/[0.03] backdrop-blur-sm relative overflow-hidden">
+            <div className="p-5 sm:p-8 rounded-3xl border border-white/10 bg-white/[0.03] backdrop-blur-sm relative overflow-hidden">
               {/* Corner accent */}
               <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-violet-500/10 to-transparent rounded-bl-3xl" />
 
@@ -167,7 +167,7 @@ export function Contact() {
               </h3>
 
               <form onSubmit={handleSubmit} className="space-y-4">
-                <div className="grid sm:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {[
                     { field: "name" as const, label: "Your Name", placeholder: "Shubham Shah", type: "text" },
                     { field: "email" as const, label: "Email Address", placeholder: "you@email.com", type: "email" },

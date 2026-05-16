@@ -147,7 +147,7 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
         style={{ background: `radial-gradient(ellipse at top left, ${project.accentLight} 0%, transparent 60%)` }}
       />
 
-      <div className="p-7 flex flex-col flex-1">
+      <div className="p-4 sm:p-7 flex flex-col flex-1">
         {/* Header row */}
         <div className="flex items-start justify-between mb-4">
           <div className="flex items-center gap-3">
@@ -283,7 +283,7 @@ export function Projects() {
   return (
     <section
       id="projects"
-      className="py-28 relative overflow-hidden"
+      className="py-16 sm:py-28 relative overflow-hidden"
       style={{ background: "linear-gradient(180deg, #0a0a1f 0%, #0c0c24 50%, #0a0a1f 100%)" }}
     >
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-cyan-500/30 to-transparent" />
@@ -292,7 +292,7 @@ export function Projects() {
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full bg-violet-900/8 blur-[120px] pointer-events-none" />
       <div className="absolute top-2/3 right-0 w-[400px] h-[400px] rounded-full bg-cyan-900/8 blur-[100px] pointer-events-none" />
 
-      <div className="max-w-6xl mx-auto px-6">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
         {/* Header */}
         <motion.div
           ref={ref}
@@ -323,7 +323,7 @@ export function Projects() {
         </motion.div>
 
         {/* Projects Grid */}
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid sm:grid-cols-2 gap-5 sm:gap-6">
           {projects.map((project, i) => (
             <ProjectCard key={project.id} project={project} index={i} />
           ))}

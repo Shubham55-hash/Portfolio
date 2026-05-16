@@ -62,18 +62,18 @@ export function About() {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="about" className="py-28 relative overflow-hidden" style={{ background: "linear-gradient(180deg, #060614 0%, #0a0a1f 100%)" }}>
+    <section id="about" className="py-12 sm:py-28 relative overflow-hidden" style={{ background: "linear-gradient(180deg, #060614 0%, #0a0a1f 100%)" }}>
       {/* Subtle background shapes */}
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-violet-500/30 to-transparent" />
 
-      <div className="max-w-6xl mx-auto px-6">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
         {/* Section header */}
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-12 sm:mb-16"
         >
           <span
             className="text-violet-400 text-sm uppercase tracking-[0.2em] mb-4 block"
@@ -93,44 +93,40 @@ export function About() {
           <div className="w-16 h-1 rounded-full bg-gradient-to-r from-violet-500 to-cyan-500 mx-auto" />
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Left: Text */}
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.2 }}
           >
-            <div className="relative p-8 rounded-3xl border border-white/10 bg-white/[0.03] backdrop-blur-sm overflow-hidden">
+            <div className="relative p-5 sm:p-8 rounded-3xl border border-white/10 bg-white/[0.03] backdrop-blur-sm overflow-hidden">
               {/* Decorative corner */}
               <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-violet-500/10 to-transparent rounded-bl-3xl" />
 
               <p
-                className="text-white/70 mb-5 leading-relaxed"
-                style={{ fontFamily: "'Inter', sans-serif", fontSize: "1rem" }}
+                className="text-white/80 mb-5 leading-relaxed"
+                style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.05rem" }}
               >
-                I'm a{" "}
-                <span className="text-violet-300 font-medium">Computer Engineering student</span>{" "}
-                at D. J. Sanghvi College of Engineering (2024–2028), deeply passionate about crafting
-                solutions that make a real-world difference.
+                I am a{" "}
+                <span className="text-violet-300 font-medium">Full-stack developer</span>{" "}
+                focused on AI-powered applications, real-time systems, and scalable web platforms.
               </p>
               <p
                 className="text-white/70 mb-5 leading-relaxed"
                 style={{ fontFamily: "'Inter', sans-serif", fontSize: "1rem" }}
               >
-                With strong skills in{" "}
-                <span className="text-cyan-300 font-medium">full-stack web development</span> and{" "}
-                <span className="text-cyan-300 font-medium">mobile app development</span>, I love
-                building systems that are both powerful under the hood and beautiful on the surface.
+                Currently a Computer Engineering student at D. J. Sanghvi College of Engineering (2024–2028), I specialize in building systems that are both powerful under the hood and beautiful on the surface.
               </p>
               <p
                 className="text-white/60 leading-relaxed"
                 style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.95rem" }}
               >
-                Currently building AI-powered platforms for security, healthcare, and smart cities — actively seeking internship opportunities where I can contribute and grow.
+                Currently building platforms for security, healthcare, and smart cities — open to SDE & Full-Stack Internships.
               </p>
 
               {/* Stats row */}
-              <div className="mt-8 pt-6 border-t border-white/10 grid grid-cols-3 gap-4">
+              <div className="mt-8 pt-6 border-t border-white/10 grid grid-cols-3 gap-2 sm:gap-4">
                 {[
                   { value: "4+", label: "Projects Built" },
                   { value: "10+", label: "Technologies" },
@@ -153,7 +149,7 @@ export function About() {
           </motion.div>
 
           {/* Right: Cards */}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-3 sm:gap-4">
             {highlights.map((item, i) => (
               <AnimatedCard key={item.title} item={item} index={i} />
             ))}

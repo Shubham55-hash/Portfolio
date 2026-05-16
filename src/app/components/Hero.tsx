@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { motion } from "motion/react";
-import { Github, Linkedin, Mail, Phone, MapPin, ChevronDown } from "lucide-react";
+import { Github, Linkedin, Mail, Phone, MapPin, ChevronDown, Download } from "lucide-react";
 
 function FloatingOrb({ className }: { className: string }) {
   return (
@@ -29,22 +29,24 @@ function ParticleCanvas() {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    const setSize = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    };
+    setSize();
+
+    // Fewer particles on mobile for performance
+    const isMobile = window.innerWidth < 768;
+    const count = isMobile ? 40 : 80;
 
     const particles: {
-      x: number;
-      y: number;
-      vx: number;
-      vy: number;
-      radius: number;
-      alpha: number;
-      color: string;
+      x: number; y: number; vx: number; vy: number;
+      radius: number; alpha: number; color: string;
     }[] = [];
 
     const colors = ["#8b5cf6", "#06b6d4", "#a78bfa", "#22d3ee", "#c4b5fd"];
 
-    for (let i = 0; i < 80; i++) {
+    for (let i = 0; i < count; i++) {
       particles.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
@@ -64,7 +66,6 @@ function ParticleCanvas() {
         p.y += p.vy;
         if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
         if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
-
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
         ctx.fillStyle = p.color;
@@ -72,20 +73,22 @@ function ParticleCanvas() {
         ctx.fill();
       });
 
-      // Draw connections
-      ctx.globalAlpha = 1;
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 120) {
-            ctx.beginPath();
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(139, 92, 246, ${0.08 * (1 - dist / 120)})`;
-            ctx.lineWidth = 0.5;
-            ctx.stroke();
+      // Connections only on desktop (performance)
+      if (!isMobile) {
+        ctx.globalAlpha = 1;
+        for (let i = 0; i < particles.length; i++) {
+          for (let j = i + 1; j < particles.length; j++) {
+            const dx = particles[i].x - particles[j].x;
+            const dy = particles[i].y - particles[j].y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < 120) {
+              ctx.beginPath();
+              ctx.moveTo(particles[i].x, particles[i].y);
+              ctx.lineTo(particles[j].x, particles[j].y);
+              ctx.strokeStyle = `rgba(139, 92, 246, ${0.08 * (1 - dist / 120)})`;
+              ctx.lineWidth = 0.5;
+              ctx.stroke();
+            }
           }
         }
       }
@@ -94,10 +97,7 @@ function ParticleCanvas() {
     };
     animate();
 
-    const handleResize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    };
+    const handleResize = () => setSize();
     window.addEventListener("resize", handleResize);
 
     return () => {
@@ -117,8 +117,8 @@ function ParticleCanvas() {
 const typewriterTexts = [
   "Full-Stack Developer",
   "App Developer",
+  "AI Builder",
   "Problem Solver",
-  "CS Student",
 ];
 
 function TypewriterText() {
@@ -171,10 +171,10 @@ export function Hero() {
     >
       <ParticleCanvas />
 
-      {/* Floating Orbs */}
-      <FloatingOrb className="w-96 h-96 bg-violet-600 top-10 -left-20" />
-      <FloatingOrb className="w-80 h-80 bg-cyan-500 bottom-10 right-10" />
-      <FloatingOrb className="w-64 h-64 bg-indigo-500 top-1/2 right-1/4" />
+      {/* Floating Orbs — hidden on very small screens for performance */}
+      <FloatingOrb className="w-64 sm:w-96 h-64 sm:h-96 bg-violet-600 top-10 -left-20" />
+      <FloatingOrb className="w-48 sm:w-80 h-48 sm:h-80 bg-cyan-500 bottom-10 right-10" />
+      <FloatingOrb className="hidden sm:block w-64 h-64 bg-indigo-500 top-1/2 right-1/4" />
 
       {/* Grid overlay */}
       <div
@@ -185,17 +185,17 @@ export function Hero() {
         }}
       />
 
-      <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
+      <div className="relative z-10 w-full max-w-5xl mx-auto px-4 sm:px-6 text-center">
         {/* Badge */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-violet-500/30 bg-violet-500/10 backdrop-blur-sm mb-8"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-violet-500/30 bg-violet-500/10 backdrop-blur-sm mb-6 sm:mb-8"
         >
-          <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-          <span className="text-violet-300 text-sm" style={{ fontFamily: "'Fira Code', monospace" }}>
-            Available for Opportunities
+          <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse shrink-0" />
+          <span className="text-violet-300 text-xs sm:text-sm" style={{ fontFamily: "'Fira Code', monospace" }}>
+            Open to SDE & Full-Stack Internships
           </span>
         </motion.div>
 
@@ -204,10 +204,10 @@ export function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.2 }}
-          className="text-white mb-4"
+          className="text-white mb-3 sm:mb-4"
           style={{
             fontFamily: "'Space Grotesk', sans-serif",
-            fontSize: "clamp(2.5rem, 8vw, 5.5rem)",
+            fontSize: "clamp(2.2rem, 10vw, 5.5rem)",
             fontWeight: 700,
             letterSpacing: "-0.02em",
             lineHeight: 1.1,
@@ -224,10 +224,10 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="text-white/60 mb-6"
+          className="text-white/60 mb-5 sm:mb-6"
           style={{
             fontFamily: "'Space Grotesk', sans-serif",
-            fontSize: "clamp(1.1rem, 3vw, 1.75rem)",
+            fontSize: "clamp(1rem, 4vw, 1.75rem)",
             fontWeight: 500,
           }}
         >
@@ -241,32 +241,32 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.5 }}
-          className="text-white/50 max-w-2xl mx-auto mb-10 text-base"
+          className="text-white/50 max-w-2xl mx-auto mb-8 sm:mb-10 text-sm sm:text-base px-2"
           style={{ fontFamily: "'Inter', sans-serif", lineHeight: 1.8 }}
         >
-          Motivated Computer Engineering student passionate about building practical solutions and
-          learning new technologies. Turning ideas into impactful digital experiences.
+          Building AI-powered platforms for security, healthcare & smart cities.
+          Turning ambitious ideas into impactful digital systems.
         </motion.p>
 
-        {/* Info pills */}
+        {/* Info pills — wrap gracefully */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.6 }}
-          className="flex flex-wrap justify-center gap-3 mb-10"
+          className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-8 sm:mb-10 px-2"
         >
           {[
-            { icon: <MapPin size={13} />, text: "Mumbai, Maharashtra" },
-            { icon: <Mail size={13} />, text: "shubhamshah048@gmail.com" },
-            { icon: <Phone size={13} />, text: "+91 7498355039" },
+            { icon: <MapPin size={12} />, text: "Mumbai, Maharashtra" },
+            { icon: <Mail size={12} />, text: "shubhamshah048@gmail.com" },
+            { icon: <Phone size={12} />, text: "+91 7498355039" },
           ].map((item, i) => (
             <div
               key={i}
-              className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/50 text-xs backdrop-blur-sm"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/50 text-[11px] sm:text-xs backdrop-blur-sm min-w-0"
               style={{ fontFamily: "'Inter', sans-serif" }}
             >
-              <span className="text-violet-400">{item.icon}</span>
-              {item.text}
+              <span className="text-violet-400 shrink-0">{item.icon}</span>
+              <span className="truncate">{item.text}</span>
             </div>
           ))}
         </motion.div>
@@ -276,13 +276,13 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.7 }}
-          className="flex flex-wrap justify-center gap-4 mb-14"
+          className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 mb-10 sm:mb-14 px-4"
         >
           <motion.button
             whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(139,92,246,0.4)" }}
             whileTap={{ scale: 0.98 }}
             onClick={() => document.querySelector("#projects")?.scrollIntoView({ behavior: "smooth" })}
-            className="px-8 py-3.5 rounded-full bg-gradient-to-r from-violet-600 to-cyan-500 text-white font-medium shadow-lg shadow-violet-500/25 cursor-pointer"
+            className="w-full sm:w-auto px-8 py-3.5 rounded-full bg-gradient-to-r from-violet-600 to-cyan-500 text-white font-medium shadow-lg shadow-violet-500/25 cursor-pointer text-sm sm:text-base"
             style={{ fontFamily: "'Space Grotesk', sans-serif" }}
           >
             View My Work
@@ -290,14 +290,27 @@ export function Hero() {
           <motion.a
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.98 }}
-            href="https://linkedin.com"
+            href="https://linkedin.com/in/shubham-shah-djsce"
             target="_blank"
             rel="noreferrer"
-            className="px-8 py-3.5 rounded-full border border-white/20 text-white font-medium backdrop-blur-sm hover:bg-white/5 transition-colors cursor-pointer"
+            className="w-full sm:w-auto px-8 py-3.5 rounded-full border border-white/20 text-white font-medium backdrop-blur-sm hover:bg-white/5 transition-colors cursor-pointer text-sm sm:text-base text-center"
             style={{ fontFamily: "'Space Grotesk', sans-serif" }}
           >
-            <span className="flex items-center gap-2">
+            <span className="flex items-center justify-center gap-2">
               <Linkedin size={16} /> LinkedIn
+            </span>
+          </motion.a>
+          <motion.a
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.98 }}
+            href="/resume.pdf"
+            target="_blank"
+            rel="noreferrer"
+            className="w-full sm:w-auto px-8 py-3.5 rounded-full border border-white/20 text-white font-medium backdrop-blur-sm hover:bg-white/5 transition-colors cursor-pointer text-sm sm:text-base text-center"
+            style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+          >
+            <span className="flex items-center justify-center gap-2">
+              <Download size={16} /> Resume
             </span>
           </motion.a>
         </motion.div>
@@ -310,8 +323,8 @@ export function Hero() {
           className="flex justify-center gap-4"
         >
           {[
-            { icon: <Github size={18} />, href: "https://github.com", label: "GitHub" },
-            { icon: <Linkedin size={18} />, href: "https://linkedin.com", label: "LinkedIn" },
+            { icon: <Github size={18} />, href: "https://github.com/Shubham55-hash", label: "GitHub" },
+            { icon: <Linkedin size={18} />, href: "https://linkedin.com/in/shubham-shah-djsce", label: "LinkedIn" },
             { icon: <Mail size={18} />, href: "mailto:shubhamshah048@gmail.com", label: "Email" },
           ].map((s) => (
             <motion.a
@@ -334,7 +347,7 @@ export function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.2 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/30 cursor-pointer"
+        className="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/30 cursor-pointer"
         onClick={() => document.querySelector("#about")?.scrollIntoView({ behavior: "smooth" })}
       >
         <span className="text-xs" style={{ fontFamily: "'Fira Code', monospace" }}>scroll</span>
